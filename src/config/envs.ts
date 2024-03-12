@@ -3,5 +3,6 @@ import { get } from 'env-var';
 import 'dotenv/config';
 
 export const envs = {
-  port: get('PORT').required().asPortNumber()
+  port: get('PORT').required().asPortNumber(),
+  mongoUri: get('MONGO_URI').required().asString()
 };
