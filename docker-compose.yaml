@@ -1,0 +1,9 @@
+services:
+  sorteo-back: 
+    image: mongo:5.0.0
+    container_name: sorteo-back
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo:/data/db
