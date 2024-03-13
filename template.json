@@ -1,0 +1,32 @@
+{
+    "id_raffle":"string or bigint",
+    "name": "string",
+    "date": "date or timestamp",
+    "active":"boolean",
+    "description":"text or string",
+    "user": {
+            "id_discord":"string or bigint",
+            "username":"string",
+            "email": "string",
+            "avatar":"string"
+    },
+    "entries": { 
+        "id_entry": "string or bigint",
+        "winner": "boolean",
+        "valid":"boolean",
+        "user": {
+            "id_discord":"string or bigint",
+            "username":"string",
+            "email": "string",
+            "avatar":"string"
+        }
+    }
+
+}
+
+{
+    "id_discord":"string or bigint",
+    "username":"string",
+    "email": "string",
+    "avatar":"string"
+}

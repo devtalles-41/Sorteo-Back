@@ -1,21 +1,28 @@
-import express from 'express';
+import express, { Router } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
 import { envs } from '../config';
 import { conectionDatabase } from '../db/config';
+import { AppRoutes } from '../routes/routes';
 
+interface Options{
+  port?: number;
+  routes: Router;
+}
 export class Server {
   private app: express.Application;
-  private port: number;
+  private readonly port: number;
+  private readonly routes: Router;
 
-  constructor() {
+  constructor( options: Options) {
+    const{port = envs.port, routes} = options;
     this.app = express();
-    this.port = envs.port;
+    this.port = port;
 
     this.conectionDatabase();
     this.middlewares();
-    this.routes();
+    this.routes = routes;
   }
 
   async conectionDatabase() {
@@ -35,9 +42,10 @@ export class Server {
     this.app.use(morgan('dev'));
   }
 
-  routes() {}
 
   listen() {
+
+    this.app.use(this.routes);
     const server = this.app.listen(this.port, () => {
       console.clear();
       console.log('Server is running on port', this.port);
