@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { envs } from '../config';
 import { conectionDatabase } from '../db/config';
 import { AppRoutes } from '../routes/routes';
+require('../strategies/discord');
 
 interface Options{
   port?: number;

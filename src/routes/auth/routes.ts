@@ -1,16 +1,17 @@
 import { Router } from "express";
+import { AuthController } from "../../controllers/auth/controller";
+import passport from 'passport';
 
 export class AuthRoutes{
     static get routes(): Router {
         const router = Router();
+        const controller = new AuthController();
 
-        router.post('/login',(req,res)=>{
-            res.json('Login')
-        });
+        router.get('/login',passport.authenticate('discord'), controller.loginDiscord);
 
-        router.post('/logout',(req,res)=>{
-            res.json('Logout')
-        });
+        router.get('/login/redirect', controller.discordCallback);
+
+        router.post('/logout',controller.registerUser);
 
         router.get('/test',(req,res)=>{
             res.json('test')
